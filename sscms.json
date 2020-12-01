@@ -1,0 +1,14 @@
+{
+  "IsNightlyUpdate": false,
+  "IsProtectData": true,
+  "AdminDirectory": "siteserver",
+  "HomeDirectory": "home",
+  "SecurityKey": "f9c01027278a387b",
+  "Database": {
+    "Type": "0NofLD4zWcY0slash0jm0add042NYzug0equals00equals00secret0",
+    "ConnectionString": "B0SvIg6ExtjhllXf3vb9UwjmLKSRMlqQ1LIs6a8G0G0slash0M1cWZ2ABJ6lvZOMlvKR0add0vM70slash0QKGc8pYo8t6sumMerqA0equals00equals00secret0"
+  },
+  "Redis": {
+    "ConnectionString": ""
+  }
+}
