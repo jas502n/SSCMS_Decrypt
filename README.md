@@ -34,3 +34,10 @@
   }
 }
 ```
+
+#### 系统安装后，SS CMS 系统将把数据库连接信息存放于 `sscms.json` 配置文件中：
+
+- IsProtectData：数据库连接是否加密存储
+- SecurityKey：加密秘钥，系统随机生成
+- Database:Type：数据库类型
+- Database:ConnectionString：数据库连接字符串
