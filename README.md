@@ -1,5 +1,7 @@
 # sscms database decrypt
 
+`https://github.com/siteserver/cms/blob/master/src/SSCMS/Utils/DesEncryptor.cs`
+
 ## Des Decrypt
 
 ```
