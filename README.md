@@ -10,7 +10,8 @@
 
 `https://github.com/siteserver/cms/blob/master/src/SSCMS/Utils/DesEncryptor.cs`
 
-```
+```python
+
  python3 sscms_decrypt.py
  
 [+] Current Encrypt Data= 0NofLD4zWcY/jm+42NYzug==
@@ -26,7 +27,8 @@
 
 ## sscms.json
 
-```
+```json
+
 {
   "IsNightlyUpdate": false,
   "IsProtectData": true,
