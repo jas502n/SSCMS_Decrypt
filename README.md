@@ -1,8 +1,14 @@
-# sscms database decrypt
+# sscms（siteserver cms） database decrypt
 
-`https://github.com/siteserver/cms/blob/master/src/SSCMS/Utils/DesEncryptor.cs`
+简介：SSCMS 基于 .NET Core，能够以最低的成本、最少的人力投入在最短的时间内架设一个功能齐全、性能优异、规模庞大并易于维护的网站平台。
+
+项目地址：https://github.com/siteserver/cms
+
+
 
 ## Des Decrypt
+
+`https://github.com/siteserver/cms/blob/master/src/SSCMS/Utils/DesEncryptor.cs`
 
 ```
  python3 sscms_decrypt.py
