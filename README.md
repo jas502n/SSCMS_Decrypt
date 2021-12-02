@@ -50,6 +50,7 @@
 
 前台登录地址: 
 http://x.x.x.x/home/pages/login.html
+![image](https://user-images.githubusercontent.com/16593068/144416418-bed8f5fc-d294-4b82-8989-4ad45b9dae4b.png)
 
 `SELECT * FROM jxxt.dbo.siteserver_User`
 
@@ -58,7 +59,13 @@ http://x.x.x.x/home/pages/login.html
 后台登录地址：
 http://x.x.x.x/SiteServer/pageLogin.cshtml
 
+![image](https://user-images.githubusercontent.com/16593068/144416281-a033c123-9e37-4dfb-aa66-f3c76a59a9d4.png)
+
+
 `SELECT * FROM jxxt.dbo.siteserver_Administrator`
+
+![image](https://user-images.githubusercontent.com/16593068/144417044-934e5a90-72b4-4664-986a-ead939821062.png)
+
 
 对应的解密代码：
 
