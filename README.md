@@ -78,7 +78,7 @@ http://x.x.x.x/SiteServer/pageLogin.cshtml
 https://github1s.com/siteserver/cms/blob/siteserver-v6.13.0/SiteServer.CMS/Provider/AdministratorDao.cs#L1126
 
 
-```
+```c#
         private string DecodePassword(string password, EPasswordFormat passwordFormat, string passwordSalt)
         {
             var retVal = string.Empty;
@@ -108,7 +108,7 @@ https://github1s.com/siteserver/cms/blob/siteserver-v6.13.0/SiteServer.CMS/Provi
 通过passwordSalt初始化DecryptKey值，进行DES解密，调用DesEncryptor.DesDecrypt()方法
 
 
-```
+```c#
 		public void DesDecrypt()
 		{
 		    byte[] iv = { 0x12, 0x34, 0x56, 0x78, 0x90, 0xAB, 0xCD, 0xEF };
@@ -133,7 +133,8 @@ https://github1s.com/siteserver/cms/blob/siteserver-v6.13.0/SiteServer.CMS/Provi
 
 对用python3代码：
 
-```
+```python
+
 import base64,pyDes
 
 def sscms_decrypt(encodeData):
