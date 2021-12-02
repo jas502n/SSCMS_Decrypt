@@ -107,8 +107,25 @@ https://github1s.com/siteserver/cms/blob/siteserver-v6.13.0/SiteServer.CMS/Provi
         }
 ```
 
-通过passwordSalt初始化DecryptKey值，进行DES解密，调用DesEncryptor.DesDecrypt()方法
+`DecryptKey = passwordSalt`
 
+通过passwordSalt初始化DecryptKey值，进行DES解密，
+
+```c#
+		/// 解密密钥
+		/// </summary>
+		public string DecryptKey
+		{
+			get { return _decryptKey; }
+			set { _decryptKey = value; }
+		}
+```
+
+跟踪 
+`var encryptor = new DesEncryptor`
+`encryptor.DesDecrypt();`
+
+即调用 **DesEncryptor.DesDecrypt()** 方法
 
 ```c#
 		public void DesDecrypt()
